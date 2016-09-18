@@ -1,2 +1,4 @@
 #base=js
 vender/angular.min.js
+
+app.js
