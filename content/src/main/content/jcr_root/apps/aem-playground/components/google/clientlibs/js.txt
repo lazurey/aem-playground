@@ -1,0 +1,2 @@
+#base=js
+vender/angular.min.js
