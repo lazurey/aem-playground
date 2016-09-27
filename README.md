@@ -45,7 +45,7 @@ By using Maven `exec-maven-plugin`, it will execute `npm run build` in the Maven
 
 **Note:** Please note that this React App is *NOT* using any AEM API or any data from AEM.
 
-**Warning:** `npm install` is skipped in the maven build to reduce the build time. If you want to reuse the code here, please add this step and find a way to optimize the time it needs.
+**Warning:** `npm install` is skipped in the maven build to reduce the build time. If you want to reuse the code here, please add this step and find a way to optimize the time it needs. And it needs to run `npm install` under `design/src/main/react-app/` for the 1st time.
 
 #### Opinion
 It's the easist way to use React on AEM, but it's also a meaningless way.
