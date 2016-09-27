@@ -57,10 +57,14 @@ Still I will recommend this way, because at least, it's harmless to both AEM and
 
 * [x] ES6
 * [x] Webpack
-* [ ] Style integration
-* [ ] Router
+* [x] Style integration
+* [x] Router
 * [ ] Redux
 * [ ] Mocha
+
+#### Known issues
+
+* Router and URL: the URL can't reflex the actual address.
 
 ### Client render React component on AEM
 
