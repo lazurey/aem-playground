@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 
+import Home from './app/pages/Home'
+
 class App extends Component {
   render() {
-    return <h1>App Container haha</h1>
+    return (<Home />)
   }
 }
 

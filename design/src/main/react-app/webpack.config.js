@@ -1,5 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
+const AEM_DESIGN_PATH = 'resources/jcr_root/etc/designs/react-libs/clientlibs/script'
 
 module.exports = {
   entry: './app.js',
@@ -23,4 +26,13 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new CopyWebpackPlugin([
+      {
+        from: './static',
+        to: path.join(__dirname, `../${AEM_DESIGN_PATH}`),
+        copyUnmodified: true
+      }
+    ])
+  ]
 };
