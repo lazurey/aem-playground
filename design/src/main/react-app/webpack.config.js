@@ -17,12 +17,26 @@ module.exports = {
         loader: 'file?name=[name].[ext]'
       },
       {
-        test: /.(js|jsx)?$/,
+        test: /\.(js|jsx)?$/,
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
           presets: ['es2015', 'react']
         }
+      },
+      {
+        test: /\.css$/,
+        include: /app/,
+        loaders: [
+          'style-loader',
+          'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+          'postcss-loader'
+        ]
+      },
+      {
+        test: /\.css$/,
+        exclude: /app/,
+        loader: 'style!css'
       }
     ]
   },

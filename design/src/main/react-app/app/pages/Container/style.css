@@ -1,0 +1,20 @@
+html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', Helvetica, Arial;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #14181b;
+  color: #14181b;
+}
+
+.container {
+  width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #FEFEFE;
+  min-height: 100vh;
+}
