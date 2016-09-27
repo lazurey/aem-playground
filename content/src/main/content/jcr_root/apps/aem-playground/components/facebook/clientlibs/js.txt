@@ -1,6 +1,0 @@
-#base=js
-vendor/react.js
-vendor/react-dom.js
-vendor/browser.min.js
-
-app.js

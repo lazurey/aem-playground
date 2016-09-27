@@ -16,9 +16,13 @@ hs_err_pid*
 .idea
 *.iml
 
+# Target folders
 content/target
 design/target
 samples/target
 
 # Front-end
 node_modules
+
+# System files
+.DS_Store

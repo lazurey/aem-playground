@@ -13,11 +13,6 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
-<template data-sly-template.headlibs="${@ designPath}"
-          data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html"
-          data-sly-use.head="${'headlibs.js' @ designPath=designPath}">
-    <sly data-sly-call="${clientLib.all @ categories='cq.foundation-main'}" />
-    <sly data-sly-call="${clientLib.all @ categories='aem-playground.react'}" />
-    <link data-sly-test="${head.staticDesign}" href="${head.staticDesign}" rel="stylesheet" type="text/css" />
-    <link data-sly-test="${head.design}" href="${head.design}" rel="stylesheet" type="text/css" />
-</template>
+
+<sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"
+     data-sly-call="${clientLib.js @ categories='aem-playground.react'}" />
