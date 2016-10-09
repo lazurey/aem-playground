@@ -7,11 +7,11 @@ import javax.jcr.Node;
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
-import java.io.InputStreamReader;
+import java.io.*;
 
 public abstract class ReactComponent {
 
-    private static ScriptEngineManager scriptEngineManager = new ScriptEngineManager();
+    private static ScriptEngineManager scriptEngineManager = new ScriptEngineManager(null);
 
     protected final Node component;
     protected final Node current;
@@ -23,12 +23,10 @@ public abstract class ReactComponent {
 
     public String render() throws Exception {
          return renderClientSide();
-//        return "Render from sever";
     }
 
     private String renderClientSide() throws Exception {
         ScriptEngine engine = templateEngine();
-//        engine.eval(getTemplate());
         Invocable invocable = (Invocable) engine;
         Object html = invocable.invokeFunction("renderClient", "Java Client Invoking you");
         return String.valueOf(html);
@@ -37,14 +35,9 @@ public abstract class ReactComponent {
 
     private ScriptEngine templateEngine() throws Exception {
         ScriptEngine nashorn = scriptEngineManager.getEngineByName("nashorn");
-        try {
-            nashorn.eval(new InputStreamReader(getClass().getResourceAsStream("nashorn-polyfill.js")));
-            nashorn.eval(new InputStreamReader(getClass().getResourceAsStream("react.min.js")));
-            nashorn.eval(getTemplate());
-        } catch (Exception e) {
-            throw new Exception("Error when loading javascript libraries.");
-        }
-
+        nashorn.eval(new InputStreamReader(getClass().getResourceAsStream("nashorn-polyfill.js")));
+        nashorn.eval(new InputStreamReader(getClass().getResourceAsStream("react.min.js")));
+        nashorn.eval(getTemplate());
         return nashorn;
     }
 
