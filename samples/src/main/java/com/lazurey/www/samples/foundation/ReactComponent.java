@@ -28,16 +28,28 @@ public abstract class ReactComponent {
     private String renderClientSide() throws Exception {
         ScriptEngine engine = templateEngine();
         Invocable invocable = (Invocable) engine;
-        Object html = invocable.invokeFunction("renderClient", "Java Client Invoking you");
-        return String.valueOf(html);
-
+        try {
+            Object html = invocable.invokeFunction("renderClient", "Java Client Invoking you");
+            return String.valueOf(html);
+        } catch (Exception e) {
+            return "Error when rendering the component: " + e.toString();
+        }
     }
 
     private ScriptEngine templateEngine() throws Exception {
         ScriptEngine nashorn = scriptEngineManager.getEngineByName("nashorn");
-        nashorn.eval(new InputStreamReader(getClass().getResourceAsStream("nashorn-polyfill.js")));
-        nashorn.eval(new InputStreamReader(getClass().getResourceAsStream("react.min.js")));
-        nashorn.eval(getTemplate());
+        try {
+            nashorn.eval(new InputStreamReader(getClass().getResourceAsStream("nashorn-polyfill.js")));
+            nashorn.eval(new InputStreamReader(getClass().getResourceAsStream("react.min.js")));
+            nashorn.eval(new InputStreamReader(getClass().getResourceAsStream("react-dom.min.js")));
+        } catch (Exception e ) {
+            System.out.println("Error when loading JS libraries: " + e.toString());
+        }
+        try {
+            nashorn.eval(getTemplate());
+        } catch (Exception e) {
+            System.out.println("Error when loading the template: " + e.toString());
+        }
         return nashorn;
     }
 

@@ -1,6 +1,6 @@
 // import React, { Component } from 'react'
 
-var React = require('react')
+var React = require('react');
 
 var Achelous = React.createClass({
   render: function() {
@@ -11,7 +11,7 @@ var Achelous = React.createClass({
       </div>
     )
   }
-})
+});
 
 // class Achelous extend Component {
 //   render() {
