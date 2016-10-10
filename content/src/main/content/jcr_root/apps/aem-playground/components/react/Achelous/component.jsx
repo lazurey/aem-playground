@@ -6,6 +6,12 @@ var Achelous = React.createClass({
     return (
       React.createElement("h2", null, "Hello you have a message: " + this.props.message)
     )
+    // return (
+      // <div>
+        // <h2>Message box:<h2>
+        // <p>this.props.message</p>
+      // </div>
+    // )
   }
 });
 
