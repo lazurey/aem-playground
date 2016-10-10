@@ -45,7 +45,7 @@ By using Maven `exec-maven-plugin`, it will execute `npm run build` in the Maven
 
 **Note:** Please note that this React App is *NOT* using any AEM API or any data from AEM.
 
-**Warning:** `npm install` is skipped in the maven build to reduce the build time. If you want to reuse the code here, please add this step and find a way to optimize the time it needs. And it needs to run `npm install` under `design/src/main/react-app/` for the 1st time.  
+**Warning:** `npm install` is skipped in the maven build to reduce the build time. If you want to reuse the code here, please add this step and find a way to optimize the time it needs. And it needs to run `npm install` under `design/src/main/react-app/` for the 1st time. 
 
 #### Opinion
 It's the easist way to use React on AEM, but it's also a meaningless way.
@@ -66,11 +66,32 @@ Still I will recommend this way, because at least, it's harmless to both AEM and
 
 * Router and URL: the URL can't reflex the actual address.
 
-### Client render React component on AEM
+### React component on AEM
 
-Code to be done.
+* [x] Server side render React component
+* [ ] Client side render React component
 
-#### Approach
+#### Server side render React component
+
+A typical server side render React component could be like this:
+
+```
+- Component
+  - .content.xml
+  - dialog.xml
+  - Component.jsp
+  - template.jsx
+```
+
+`.content.xml` and `dialog.xml` are the same as normal components.
+`Component.jsp` will be a shell template and only used to call the component call to render.
+`template.jsx`: your React component will stay here.
+
+To enable the server side render, it will need an abstract component class to call the Nashorn ScirptEngine in Java and all AEM components need to extend this class and change the data fetch method. Refer to the [ReactComponent.java](https://github.com/lazurey/aem-playground/blob/master/samples/src/main/java/com/lazurey/www/samples/foundation/ReactComponent.java), I haven't worked out how to support JSX at the moment.
+
+Although server render is feasible, I didn't see there's much benefit we could get from this approaching.
+
+#### Client side render React component
 The idea is to find a way to do client-render for React components. It aims to enable applications to cache a page as much as it could by making the customized content client-side rendering.
 
 A few facts about this idea:
