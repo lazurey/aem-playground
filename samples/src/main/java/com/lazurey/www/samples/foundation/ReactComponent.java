@@ -25,11 +25,13 @@ public abstract class ReactComponent {
          return renderServerSide();
     }
 
+    public abstract String getDataAsJson() throws Exception;
+
     private String renderServerSide() throws Exception {
         ScriptEngine engine = templateEngine();
         Invocable invocable = (Invocable) engine;
         try {
-            Object html = invocable.invokeFunction("renderServer", "Java Client Invoking you");
+            Object html = invocable.invokeFunction("renderServer", getDataAsJson());
             return String.valueOf(html);
         } catch (Exception e) {
             return "Error when rendering the component: " + e.toString();
@@ -40,8 +42,6 @@ public abstract class ReactComponent {
         ScriptEngine nashorn = scriptEngineManager.getEngineByName("nashorn");
         try {
             nashorn.eval(new InputStreamReader(getClass().getResourceAsStream("nashorn-polyfill.js")));
-            nashorn.eval("var process = {env:{}}");
-            nashorn.eval("var global = this;");
             nashorn.eval(new InputStreamReader(getClass().getResourceAsStream("react.min.js")));
             nashorn.eval(new InputStreamReader(getClass().getResourceAsStream("react-dom-server.min.js")));
         } catch (Exception e) {

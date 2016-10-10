@@ -8,4 +8,9 @@ public class Achelous extends ReactComponent {
         super(component, current);
     }
 
+    @Override
+    public String getDataAsJson() throws Exception {
+        String message = current.hasProperty("message") ? current.getProperty("message").getString() : "No message for you.";
+        return "{\"message\": \"" + message + "\"}";
+    }
 }
