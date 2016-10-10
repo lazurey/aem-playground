@@ -22,14 +22,14 @@ public abstract class ReactComponent {
     }
 
     public String render() throws Exception {
-         return renderClientSide();
+         return renderServerSide();
     }
 
-    private String renderClientSide() throws Exception {
+    private String renderServerSide() throws Exception {
         ScriptEngine engine = templateEngine();
         Invocable invocable = (Invocable) engine;
         try {
-            Object html = invocable.invokeFunction("renderClient", "Java Client Invoking you");
+            Object html = invocable.invokeFunction("renderServer", "Java Client Invoking you");
             return String.valueOf(html);
         } catch (Exception e) {
             return "Error when rendering the component: " + e.toString();
@@ -40,15 +40,17 @@ public abstract class ReactComponent {
         ScriptEngine nashorn = scriptEngineManager.getEngineByName("nashorn");
         try {
             nashorn.eval(new InputStreamReader(getClass().getResourceAsStream("nashorn-polyfill.js")));
+            nashorn.eval("var process = {env:{}}");
+            nashorn.eval("var global = this;");
             nashorn.eval(new InputStreamReader(getClass().getResourceAsStream("react.min.js")));
-            nashorn.eval(new InputStreamReader(getClass().getResourceAsStream("react-dom.min.js")));
-        } catch (Exception e ) {
-            System.out.println("Error when loading JS libraries: " + e.toString());
+            nashorn.eval(new InputStreamReader(getClass().getResourceAsStream("react-dom-server.min.js")));
+        } catch (Exception e) {
+            throw new Exception("Error when loading JS libraries: " + e.toString());
         }
         try {
             nashorn.eval(getTemplate());
         } catch (Exception e) {
-            System.out.println("Error when loading the template: " + e.toString());
+            throw new Exception("Error when loading the template: " + e.toString());
         }
         return nashorn;
     }
