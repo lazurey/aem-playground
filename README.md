@@ -69,7 +69,7 @@ Still I will recommend this way, because at least, it's harmless to both AEM and
 ### React component on AEM
 
 * [x] Server side render React component
-* [ ] Client side render React component
+* [x] Client side render React component
 
 #### Server side render React component
 
@@ -92,17 +92,31 @@ To enable the server side render, it will need an abstract component class to ca
 Although server render is feasible, I didn't see there's much benefit we could get from this approaching.
 
 #### Client side render React component
-The idea is to find a way to do client-render for React components. It aims to enable applications to cache a page as much as it could by making the customized content client-side rendering.
+The idea is to find a way to do client-render for React components. 
 
-A few facts about this idea:
+I postulate that the start point is:
+
+- React project (e.g. Style guid) is maintained separately by another team.
+- AEM project will try to use the existing React project and do the integration work.
+
+Based on this, I used [React-MDL](https://tleunen.github.io/react-mdl/) as Style guide and wrote a [JavaScript helper](https://github.com/lazurey/aem-playground/blob/master/design/src/main/resources/jcr_root/etc/designs/react-comp/clientlibs/script/react-render-tool.js) function to render React component based on the components on the page.
+
+The component template will be a placeholder like this:
+
+```html
+<div class="component-placeholder"
+      data-comp-name="Button"
+      data-uri="<%= currentNode.getPath() %>.json"></div>
+```
+
+If you want to customize the json, then you could write something in the server side to shape the data into something that the React component needs.
+
+A few facts about this approach:
 
 - It's client-side rendered
 - It will have limited editting functionalities
 - It should be only used for non-cachable components and better be less than 10% of a page.
 
-Technical it will need:
-
-- JavaScript engine in Java
 
 #### Opinion
 
