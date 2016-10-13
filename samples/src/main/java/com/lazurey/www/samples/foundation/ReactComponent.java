@@ -55,8 +55,9 @@ public abstract class ReactComponent {
         ScriptEngine engine = templateEngine();
         Invocable invocable = (Invocable) engine;
         try {
-            Object html = invocable.invokeFunction("renderClient", getDataUri());
-            return String.valueOf(html);
+//            Object html = invocable.invokeFunction("renderClient", getDataUri());
+//            return String.valueOf(html);
+            return getPlaceholderHTML();
         } catch (Exception e) {
             return "Error when rendering the component (client-side): " + e.toString();
         }
@@ -84,7 +85,11 @@ public abstract class ReactComponent {
         return IOUtils.toString(template.getStream());
     }
 
-    public String getDataUri() throws RepositoryException {
+    private String getDataUri() throws RepositoryException {
         return current.getPath() + ".json";
+    }
+
+    private String getPlaceholderHTML() {
+        return "<div id='comp-placeholder'></div>";
     }
 }

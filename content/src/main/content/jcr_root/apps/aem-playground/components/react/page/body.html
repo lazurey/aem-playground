@@ -1,0 +1,16 @@
+<main>
+  <hr/>
+  <h3>Below should be client side rendering</h3>
+  <sly data-sly-resource="${'main' @ resourceType='wcm/foundation/components/parsys'}"/>
+  <hr/>
+</main>
+<div class="summary-board">
+  <h4>React Client Sider Rendering Page</h4>
+  <p>The implementation is based on <a href="https://tleunen.github.io/react-mdl/" target="_blank">Reat-MDL</a>, trying to integrate an independent React library with AEM.</p>
+  <p>The component implementation is like the following:</p>
+  <pre>
+    <div class="component-placeholder" data-comp-name="Button" data-uri="<%= currentNode.getPath() %>.json"></div>
+  </pre>
+  <p>And then using a JavaScript tool function to render all these placeholders into React Component and call data uri after the page is loaded.</p>
+</div>
+<sly data-sly-include="footerlibs.html" />
