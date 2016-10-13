@@ -13,9 +13,9 @@ import java.io.*;
 
 public abstract class ReactComponent {
 
-    private static final String CLIENT_SIDE = "client-side";
-    private static final String SERVER_SIDE = "server-side";
-    private static final String RENDER_PROPERTY = "renderside";
+//    private static final String CLIENT_SIDE = "client-side";
+//    private static final String SERVER_SIDE = "server-side";
+//    private static final String RENDER_PROPERTY = "renderside";
     private static ScriptEngineManager scriptEngineManager = new ScriptEngineManager(null);
 
     protected final Node component;
@@ -27,18 +27,18 @@ public abstract class ReactComponent {
     }
 
     public String render() throws Exception {
-         return isClientSideRendering() ? renderClientSide() : renderServerSide();
+         return renderServerSide();
     }
 
     public abstract String getDataAsJson() throws Exception;
 
-    private boolean isClientSideRendering() throws RepositoryException {
-        return CLIENT_SIDE.equalsIgnoreCase(getRender());
-    }
+//    private boolean isClientSideRendering() throws RepositoryException {
+//        return CLIENT_SIDE.equalsIgnoreCase(getRender());
+//    }
 
-    private String getRender() throws RepositoryException {
-        return current.hasProperty(RENDER_PROPERTY) ? current.getProperty(RENDER_PROPERTY).getString() : SERVER_SIDE;
-    }
+//    private String getRender() throws RepositoryException {
+//        return current.hasProperty(RENDER_PROPERTY) ? current.getProperty(RENDER_PROPERTY).getString() : SERVER_SIDE;
+//    }
 
     private String renderServerSide() throws Exception {
         ScriptEngine engine = templateEngine();
@@ -51,17 +51,17 @@ public abstract class ReactComponent {
         }
     }
 
-    private String renderClientSide() throws Exception {
-        ScriptEngine engine = templateEngine();
-        Invocable invocable = (Invocable) engine;
-        try {
+//    private String renderClientSide() throws Exception {
+//        ScriptEngine engine = templateEngine();
+//        Invocable invocable = (Invocable) engine;
+//        try {
 //            Object html = invocable.invokeFunction("renderClient", getDataUri());
 //            return String.valueOf(html);
-            return getPlaceholderHTML();
-        } catch (Exception e) {
-            return "Error when rendering the component (client-side): " + e.toString();
-        }
-    }
+//            return getPlaceholderHTML();
+//        } catch (Exception e) {
+//            return "Error when rendering the component (client-side): " + e.toString();
+//        }
+//    }
 
     private ScriptEngine templateEngine() throws Exception {
         ScriptEngine nashorn = scriptEngineManager.getEngineByName("nashorn");
@@ -85,11 +85,11 @@ public abstract class ReactComponent {
         return IOUtils.toString(template.getStream());
     }
 
-    private String getDataUri() throws RepositoryException {
-        return current.getPath() + ".json";
-    }
-
-    private String getPlaceholderHTML() {
-        return "<div id='comp-placeholder'></div>";
-    }
+//    private String getDataUri() throws RepositoryException {
+//        return current.getPath() + ".json";
+//    }
+//
+//    private String getPlaceholderHTML() {
+//        return "<div id='comp-placeholder'></div>";
+//    }
 }

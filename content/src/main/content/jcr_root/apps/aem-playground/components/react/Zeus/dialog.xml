@@ -5,16 +5,16 @@
     width="{Long}500"
     xtype="panel">
     <items jcr:primaryType="cq:WidgetCollection">
-        <message
+        <child
             jcr:primaryType="cq:Widget"
-            fieldLabel="Message"
-            name="./message"
+            fieldLabel="Button text"
+            name="./child"
             xtype="textfield"/>
-        <renderside
+        <raised
             jcr:primaryType="cq:Widget"
             fieldLabel="Render Side"
-            name="./renderside"
-            xtype="textfield"
-            defaultValue="client-side"/>
+            name="./raised"
+            xtype="checkbox"
+            defaultValue="true"/>
     </items>
 </jcr:root>

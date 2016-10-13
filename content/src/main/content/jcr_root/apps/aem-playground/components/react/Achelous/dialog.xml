@@ -10,11 +10,5 @@
             fieldLabel="Message"
             name="./message"
             xtype="textfield"/>
-        <renderside
-            jcr:primaryType="cq:Widget"
-            fieldLabel="Render Side"
-            name="./renderside"
-            xtype="textfield"
-            defaultValue="server-side"/>
     </items>
 </jcr:root>
