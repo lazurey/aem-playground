@@ -114,13 +114,12 @@ If you want to customize the json, then you could write something in the server 
 A few facts about this approach:
 
 - It's client-side rendered
-- It will have limited editting functionalities
+- It will have limited editting functionalities and will need a refresh unless paying more effort to fix this.
 - It should be only used for non-cachable components and better be less than 10% of a page.
-
 
 #### Opinion
 
-TBD
+This could be a reasonable way to use React on AEM because Style guide will always be a separate team and it could be already done before AEM set up. And we always need to use styleguide to implement something.
 
 ### React + AEM Integration Alternative
 
