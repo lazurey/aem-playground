@@ -12,9 +12,39 @@
             xtype="textfield"/>
         <raised
             jcr:primaryType="cq:Widget"
-            fieldLabel="Render Side"
+            fieldLabel="Raised Button"
             name="./raised"
-            xtype="checkbox"
-            defaultValue="true"/>
+            type="select"
+            xtype="selection"
+            defaultValue="{Boolean}false">
+            <options jcr:primaryType="cq:WidgetCollection">
+                <true
+                    jcr:primaryType="nt:unstructured"
+                    text="Raised"
+                    value="{Boolean}true"/>
+                <false
+                    jcr:primaryType="nt:unstructured"
+                    text="Off"
+                    value="{Boolean}false"/>
+            </options>
+        </raised>
+        <colored
+            jcr:primaryType="cq:Widget"
+            fieldLabel="colored Button"
+            name="./colored"
+            type="select"
+            xtype="selection"
+            defaultValue="{Boolean}false">
+            <options jcr:primaryType="cq:WidgetCollection">
+                <true
+                    jcr:primaryType="nt:unstructured"
+                    text="Colored"
+                    value="{Boolean}true"/>
+                <false
+                    jcr:primaryType="nt:unstructured"
+                    text="Off"
+                    value="{Boolean}false"/>
+            </options>
+        </colored>
     </items>
 </jcr:root>

@@ -10,7 +10,7 @@ function renderClient() {
         uri = $(this).data('uri');
     var container = $(this).get(0);
     $.get(uri, function(data) {
-      ReactDOM.render(React.createElement(ReactMDL[name], null, data.message), container);
+      ReactDOM.render(React.createElement(ReactMDL[name], data, data.child), container);
     });
   });
 }
